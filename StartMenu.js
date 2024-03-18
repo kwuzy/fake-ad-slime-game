@@ -8,8 +8,8 @@ class StartMenu extends Phaser.Scene {
         this.load.image("main", "./Assets/Sprites/main_char.png");
         //enemies
         this.load.image("enemy", "./Assets/Sprites/enemy_char.png");
-        this.load.image("enemy", "./Assets/Sprites/bigenemy_char.png");
-        this.load.image("enemy", "./Assets/Sprites/boss_char.png");
+        this.load.image("bigEnemy", "./Assets/Sprites/bigenemy_char.png");
+        this.load.image("boss", "./Assets/Sprites/boss_char.png");
         //bullet
         this.load.spritesheet("bullet", "./Assets/Sprites/bullet.png", {
             frameWidth: 16,

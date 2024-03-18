@@ -8,7 +8,7 @@ class MainLoop extends Phaser.Scene {
         this.scoreTexts = this.add.group();
         this.projectiles = this.add.group();
         this.enemies = this.add.group();
-        this.modifiers = this.add.group();
+        this.modifiers = this.physics.add.group();
         //UI variables
         this.scoreText;
         this.fireRateText;
@@ -39,24 +39,24 @@ class MainLoop extends Phaser.Scene {
         //STARTING NEW GAME
         this.resetGameData();
         this.updateGameData();
-        this.createModifiers();
         this.startTime = this.game.getTime();
         //line for enemy damage (too lazy to make an image)
-        const underscore = "_";
+        const underscore = "=";
         const numberOfLines = Math.floor(canvasWidth / 10);
         let damageLine = "";
         for (let i = 0; i < numberOfLines; i++) {
             damageLine += underscore;
         }
-        this.add.text(15, canvasHeight - 102, damageLine, { fill: '#8E1600' });
+        this.add.text(15, canvasHeight - 95, damageLine, { fill: '#8E1600' });
         //main character
         this.main = this.add.sprite(centerX, canvasHeight - 50, "main");
-        this.player.add(this.main);
         this.player = this.physics.add.group();
+        this.player.add(this.main);
         this.cursorKeys = this.input.keyboard.createCursorKeys();
         //collisions
         this.physics.add.overlap(this.projectiles, this.enemies, this.hitEnemy, null, this);
         this.physics.add.overlap(this.player, this.modifiers, this.pickupModifier, null, this);
+        this.createModifiers();
     }
     update() {
         //lose condition
@@ -113,12 +113,12 @@ class MainLoop extends Phaser.Scene {
         this.lastEnemySpawnTime = this.game.getTime();
     }
     createBigEnemy() {
-        const enemy = new Enemy(this);
+        const enemy = new BigEnemy(this);
         //for resetting spawn time
         this.lastEnemySpawnTime = this.game.getTime();
     }
     createBossEnemy() {
-        const enemy = new Enemy(this);
+        const enemy = new Boss(this);
         //for resetting spawn time
         this.lastEnemySpawnTime = this.game.getTime();
     }
@@ -126,20 +126,20 @@ class MainLoop extends Phaser.Scene {
     createModifiers() {
         const maxModifiers = 4;
         for (let i = 0; i < maxModifiers; i++) {
-            const modifer = new Modifer(this);
+            const modifier = new Modifier(this);
             //avoid stacking, only one in each quartile
             switch (i) {
                 case 0:
-                    modifer.setRandomPosition(50, 0, quartileX1 - 100, 0);
+                    modifier.setRandomPosition(50, 0, quartileX1 - 100, 0);
                     break;
                 case 1:
-                    modifer.setRandomPosition(quartileX1 + 50, 0, quartileX1 - 100, 0);
+                    modifier.setRandomPosition(quartileX1 + 50, 0, quartileX1 - 100, 0);
                     break;
                 case 2:
-                    modifer.setRandomPosition(centerX + 50, 0, quartileX1 - 100, 0);
+                    modifier.setRandomPosition(centerX + 50, 0, quartileX1 - 100, 0);
                     break;
                 default:
-                    modifer.setRandomPosition(quartileX3 + 50, 0, quartileX1 - 100, 0);
+                    modifier.setRandomPosition(quartileX3 + 50, 0, quartileX1 - 100, 0);
             }
         }
     }
@@ -231,6 +231,7 @@ class MainLoop extends Phaser.Scene {
         if (gameManager.fireRate < this.startFireRate) {
             gameManager.fireRate = this.startFireRate;
         }
+        this.fireInterval = 1000 / gameManager.fireRate;
         //prevent player from going below start move speed
         if (gameManager.moveSpeed < this.startMoveSpeed) {
             gameManager.moveSpeed = this.startMoveSpeed;

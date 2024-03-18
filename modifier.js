@@ -1,4 +1,4 @@
-class Modifer extends Phaser.GameObjects.Image {
+class Modifier extends Phaser.GameObjects.Image {
     constructor(scene) {
         const x = 0;
         const y = 0;
@@ -19,7 +19,7 @@ class Modifer extends Phaser.GameObjects.Image {
 
         //modifer data for pickup
         this.operation = '';
-        this.speedModifer = 0;
+        this.speedModifier = 0;
         this.fireRateModifier = 0;
         this.healthModifier = 0;
         switch (randomNumber) {
@@ -65,31 +65,31 @@ class Modifer extends Phaser.GameObjects.Image {
                 break;
             case 10:
                 this.operation = 'add/subtract';
-                this.speedModifer = 2;
+                this.speedModifier = 2;
                 break;
             case 11:
                 this.operation = 'add/subtract';
-                this.speedModifer = 4;
+                this.speedModifier = 4;
                 break;
             case 12:
                 this.operation = 'multiply/divide';
-                this.speedModifer = 1;
+                this.speedModifier = 1;
                 break;
             case 13:
                 this.operation = 'multiply/divide';
-                this.speedModifer = 2;
+                this.speedModifier = 2;
                 break;
             case 14:
                 this.operation = 'add/subtract';
-                this.speedModifer = -1;
+                this.speedModifier = -1;
                 break;
             case 15:
                 this.operation = 'add/subtract';
-                this.speedModifer = -2;
+                this.speedModifier = -2;
                 break;
             case 16:
                 this.operation = 'multiply/divide';
-                this.speedModifer = 1 / 2;
+                this.speedModifier = 1 / 2;
                 break;
             case 17:
                 this.operation = 'add/subtract';
@@ -108,7 +108,7 @@ class Modifer extends Phaser.GameObjects.Image {
     getModifier() {
         return {
             operation: this.operation,
-            speedModifer: this.speedModifer,
+            speedModifier: this.speedModifier,
             fireRateModifier: this.fireRateModifier,
             healthModifier: this.healthModifier
         }

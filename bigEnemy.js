@@ -1,5 +1,5 @@
 class BigEnemy extends Phaser.GameObjects.Image {
-    constuctor(scene) {
+    constructor(scene) {
         //random enemy position
         const x = Phaser.Math.Between(50, canvasWidth - 50);
         const y = -30;
