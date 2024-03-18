@@ -1,0 +1,12 @@
+html {
+    font-family: 'Courier New', Courier, monospace;
+    background: linear-gradient(to left, rgb(102,31,255), rgb(199,199,255) 25%, rgb(88,88,255) 75%, rgb(122,60,255) 100%);
+}
+canvas {
+    display: block;
+    margin: auto;
+}
+h1 {
+    text-align: center;
+    margin: 20px;
+}
