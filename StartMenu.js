@@ -57,4 +57,24 @@ class StartMenu extends Phaser.Scene {
         // health +5
         this.load.image("modifier19", "./Assets/Sprites/modifiers/modifier19.png");
     }
+    create() {
+        //start button
+        const startButton = this.add.text(centerX - 187, centerY - 60, `         Click Here to Start\n\nUse Left and Right Arrow Keys To Move\n\n     Survive as long as you can!\n\n    Pick up modifiers each level\n\n Don't let enemies reach the bottom\n\nGame is over when your Health hits 0`, { fill: '#000'});
+        startButton.setInteractive();
+        
+        //bullet animation
+        this.anims.create({
+            key: "bullet_anim",
+            frames: this.anims.generateFrameNumbers("bullet"),
+            frameRate: 20,
+            repeat: -1
+        });
+
+        startButton.on('pointerdown', () => {
+            this.startGame();
+        });
+    }
+    startGame() {
+        this.scene.start("playGame");
+    }
 }
