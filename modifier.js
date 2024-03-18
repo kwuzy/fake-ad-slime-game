@@ -105,7 +105,7 @@ class Modifer extends Phaser.GameObjects.Image {
                 break;
         }
     }
-    pickupModifier() {
+    getModifier() {
         return {
             operation: this.operation,
             speedModifer: this.speedModifer,

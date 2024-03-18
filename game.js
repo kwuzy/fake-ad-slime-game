@@ -10,7 +10,7 @@ const config = {
     backgroundColor: 0xCCCCFF,
     scene: [StartMenu, MainLoop, GameOver],
     pixelArt: true,
-    phyics: {
+    physics: {
         default: "arcade",
         arcade: {
             debug: false
