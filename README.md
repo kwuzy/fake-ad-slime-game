@@ -1,1 +1,1 @@
-# real-fake-ad-game
+# Fake Ad Slime Game

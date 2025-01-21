@@ -7,7 +7,7 @@ const canvasHeight = 600;
 const config = {
     width: canvasWidth,
     height: canvasHeight,
-    backgroundColor: 0x87e1fa,
+    backgroundColor: 0xB1EEFF,
     scene: [StartMenu, MainLoop, GameOver],
     pixelArt: true,
     physics: {
